@@ -9,6 +9,6 @@ foreach(bench IN LISTS benches)
   target_link_libraries(
     bench_${bench}
     PRIVATE
-      punycode_static
+      punycode::static
   )
 endforeach()

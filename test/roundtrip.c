@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <utf.h>
 
-#include "../include/punycode.h"
 #include "samples.h"
+#include <punycode.h>
 
 // The longest run that any of the cases below round trips, and the buffer that
 // encoding a run that long calls for.

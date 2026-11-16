@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <utf.h>
 
-#include "../../include/punycode.h"
+#include <punycode.h>
 
 int
 LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
