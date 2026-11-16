@@ -8,6 +8,20 @@ extern "C" {
 #include <stddef.h>
 #include <utf.h>
 
+#if defined(_WIN32)
+#if defined(PUNYCODE_BUILDING)
+#define PUNYCODE_EXPORT __declspec(dllexport)
+#elif defined(PUNYCODE_SHARED)
+#define PUNYCODE_EXPORT __declspec(dllimport)
+#else
+#define PUNYCODE_EXPORT
+#endif
+#elif defined(__GNUC__)
+#define PUNYCODE_EXPORT __attribute__((visibility("default")))
+#else
+#define PUNYCODE_EXPORT
+#endif
+
 /**
  * The most basic code points that encoding a single code point can produce. A
  * delta is at most `UINT32_MAX`, and every digit but the last divides what
@@ -28,7 +42,7 @@ extern "C" {
  * Returns `(size_t) -1` if `len` is large enough that the bound would overflow,
  * such an input being far too long to encode in any case.
  */
-size_t
+PUNYCODE_EXPORT size_t
 punycode_max_length_from_utf32(size_t len);
 
 /**
@@ -37,7 +51,7 @@ punycode_max_length_from_utf32(size_t len);
  * either copied from the literal portion of the input or encoded by at least one
  * digit, so the output is never longer than the input.
  */
-size_t
+PUNYCODE_EXPORT size_t
 utf32_max_length_from_punycode(size_t len);
 
 /**
@@ -55,7 +69,7 @@ utf32_max_length_from_punycode(size_t len);
  *
  * https://www.rfc-editor.org/rfc/rfc3492#section-6.3
  */
-int
+PUNYCODE_EXPORT int
 punycode_encode_utf8(const utf32_t *data, size_t len, utf8_t *result, size_t *result_len);
 
 /**
@@ -72,7 +86,7 @@ punycode_encode_utf8(const utf32_t *data, size_t len, utf8_t *result, size_t *re
  *
  * https://www.rfc-editor.org/rfc/rfc3492#section-6.2
  */
-int
+PUNYCODE_EXPORT int
 punycode_decode_utf8(const utf8_t *data, size_t len, utf32_t *result, size_t *result_len);
 
 /**
@@ -84,7 +98,7 @@ punycode_decode_utf8(const utf8_t *data, size_t len, utf32_t *result, size_t *re
  * A code point of `data` that is not basic is rejected in the same way as a byte
  * of `punycode_decode_utf8()` that is not.
  */
-int
+PUNYCODE_EXPORT int
 punycode_decode_utf32(const utf32_t *data, size_t len, utf32_t *result, size_t *result_len);
 
 #ifdef __cplusplus

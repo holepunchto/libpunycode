@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <utf.h>
 
-#include "../include/punycode.h"
+#include <punycode.h>
 
 int
 main() {

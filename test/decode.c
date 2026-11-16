@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <utf.h>
 
-#include "../include/punycode.h"
 #include "samples.h"
+#include <punycode.h>
 
 int
 main() {

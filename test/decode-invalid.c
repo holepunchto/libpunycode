@@ -4,7 +4,7 @@
 #include <string.h>
 #include <utf.h>
 
-#include "../include/punycode.h"
+#include <punycode.h>
 
 // Each of these was checked against a reference implementation, which rejects
 // every one of them.
